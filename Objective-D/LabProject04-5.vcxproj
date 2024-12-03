@@ -181,7 +181,6 @@
     <ClInclude Include="StartMode.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TerrainUtil.h" />
-    <ClInclude Include="TestObject.h" />
     <ClInclude Include="TextureUtil.h" />
     <ClInclude Include="TimerUtil.h" />
     <ClInclude Include="TransformUtil.h" />

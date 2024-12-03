@@ -199,9 +199,6 @@
     <ClInclude Include="StartMode.h">
       <Filter>[5]____________[ Objective-D ]\[1] - [ Config ]\Header</Filter>
     </ClInclude>
-    <ClInclude Include="TestObject.h">
-      <Filter>[2]____________[ Game Object ]\[1] [ CustomObject ]</Filter>
-    </ClInclude>
     <ClInclude Include="d3dx12.h">
       <Filter>[5]____________[ Objective-D ]\[2] - [ Header ]</Filter>
     </ClInclude>

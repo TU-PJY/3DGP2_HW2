@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 
-namespace Mode1 {
+namespace HomeMode {
 	void Start();
 	void Destructor();
 	void KeyboardController(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
