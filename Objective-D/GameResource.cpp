@@ -29,6 +29,7 @@ Texture* TextureTerrain; // 터레인 텍스처
 Texture* TextureWater; // 물 텍스처
 Texture* TextureGunship; // 헬리콥터 텍스처
 Texture* TextureBuilding; // 건물 텍스처
+Texture* TextureSkybox; // 스카이박스 텍스처
 
 // 택스처를 여기서 로드한다.
 void LoadTexture(ID3D12Device* Device, ID3D12GraphicsCommandList* CmdList) {
@@ -40,6 +41,7 @@ void LoadTexture(ID3D12Device* Device, ID3D12GraphicsCommandList* CmdList) {
 	ImportTexture(Device, CmdList, TextureWater, L"Resources//Image//water.png", TEXTURE_TYPE_WIC);
 	ImportTexture(Device, CmdList, TextureGunship, L"Resources//Image//gunship.png", TEXTURE_TYPE_WIC);
 	ImportTexture(Device, CmdList, TextureBuilding, L"Resources//Image//color_building.png", TEXTURE_TYPE_WIC);
+	ImportTexture(Device, CmdList, TextureSkybox, L"Resources//Image//sky.png", TEXTURE_TYPE_WIC);
 }
 /////////////////////////////////////////////////////////////////////////////////
 
