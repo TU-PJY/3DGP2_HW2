@@ -22,7 +22,7 @@ void GameObject::InitRenderState(int RenderTypeFlag) {
 
 	if (RenderTypeFlag == RENDER_TYPE_2D || RenderTypeFlag == RENDER_TYPE_2D_STATIC) {
 		Transform::Identity(ImageAspectMatrix);
-		FlipTexture(FLIP_TYPE_V);
+		FlipTexture(FLIP_TYPE_NONE);
 	}
 
 	if (RenderTypeFlag == RENDER_TYPE_3D || RenderTypeFlag == RENDER_TYPE_3D_STATIC || RenderTypeFlag == RENDER_TYPE_3D_ORTHO) {
