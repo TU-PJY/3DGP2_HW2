@@ -1,7 +1,5 @@
 #pragma once
 #include "GameObject.h"
-#include "CameraUtil.h"
-#include "TransformUtil.h"
 #include "TerrainUtil.h"
 
 

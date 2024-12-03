@@ -188,6 +188,7 @@
     <ClInclude Include="TextureUtil.h" />
     <ClInclude Include="TimerUtil.h" />
     <ClInclude Include="TransformUtil.h" />
+    <ClInclude Include="Water.h" />
     <ClInclude Include="WICTextureLoader12.h" />
   </ItemGroup>
   <ItemGroup>

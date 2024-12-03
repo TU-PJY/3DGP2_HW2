@@ -17,6 +17,7 @@ extern Texture* TextureEnter; // PressEnter 텍스처
 extern Texture* TextureScroll; // Scroll help 텍스처
 
 extern Texture* TextureTerrain; // 터레인 텍스처
+extern Texture* TextureWater; // 물 텍스처
 /////////////////////////////////////////////////////////////////////////////////
 
 extern Object_Shader* ObjectShader;

@@ -20,6 +20,7 @@ Texture* TextureEnter; // PressEnter 텍스처
 Texture* TextureScroll; // Scroll help 텍스처
 
 Texture* TextureTerrain; // 터레인 텍스처
+Texture* TextureWater; // 물 텍스처
 
 // 택스처를 여기서 로드한다.
 void LoadTexture(ID3D12Device* Device, ID3D12GraphicsCommandList* CmdList) {
@@ -28,6 +29,7 @@ void LoadTexture(ID3D12Device* Device, ID3D12GraphicsCommandList* CmdList) {
 	ImportTexture(Device, CmdList, TextureEnter, L"Resources//Image//press_enter.png", TEXTURE_TYPE_WIC);
 	ImportTexture(Device, CmdList, TextureScroll, L"Resources//Image//scroll_help.png", TEXTURE_TYPE_WIC);
 	ImportTexture(Device, CmdList, TextureTerrain, L"Resources//Image//grass.jpg", TEXTURE_TYPE_WIC);
+	ImportTexture(Device, CmdList, TextureWater, L"Resources//Image//water.png", TEXTURE_TYPE_WIC);
 }
 /////////////////////////////////////////////////////////////////////////////////
 

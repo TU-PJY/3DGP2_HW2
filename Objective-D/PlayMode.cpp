@@ -1,12 +1,14 @@
 #include "PlayMode.h"
 #include "MouseUtil.h"
 #include "Terrain.h"
+#include "Water.h"
 #include "CameraController.h"
 
 bool StartCapture;
 
 void PlayMode::Start() {
 	scene.AddObject(new Terrain, "object_terrain", LAYER1);
+	scene.AddObject(new Water, "object_water", LAYER1);
 	scene.AddObject(new CameraController, "object_controller", LAYER1);
 	RegisterController();
 	scene.RegisterModeName("PlayMode");
@@ -34,6 +36,7 @@ void PlayMode::MouseMotionController(HWND hWnd) {
 
 
 void PlayMode::MouseController(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam) {
+	mouse.StartMotionCapture(hWnd);
 }
 
 void PlayMode::RegisterController() {
