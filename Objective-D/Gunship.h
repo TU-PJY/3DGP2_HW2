@@ -115,6 +115,7 @@ public:
 					AvoidCalculated = true;
 					AvoidState = true;
 
+					// 회피 기동 알림 활성화
 					if (auto Alert = scene.Find("object_alert"); Alert)
 						Alert->EnableAlert();
 				}
@@ -124,6 +125,8 @@ public:
 			else {
 				AvoidState = false;
 				AvoidCalculated = false;
+
+				// 회피 기동 알림 비활성화
 				if (auto Alert = scene.Find("object_alert"); Alert)
 					Alert->DisableAlert();
 			}
