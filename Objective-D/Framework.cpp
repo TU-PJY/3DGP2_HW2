@@ -25,7 +25,6 @@ void Framework::Init() {
 	camera.SetScissorRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	camera.SetTimeLag(0.0f);
 	camera.InitStaticMatrix();
-	camera.SwitchCameraMode(CamMode::MODE1);
 
 	CmdList->Close();
 	ID3D12CommandList* CmdLists[] = { CmdList };

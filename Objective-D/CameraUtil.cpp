@@ -7,7 +7,7 @@
 // 예) 카메라 추적 대상 변경, 카메라 시점 변경 등
 void Camera::Update(float FT) {
 	switch (Mode) {
-	case CamMode::MODE1:
+	case CamMode::SPECTOR_MODE:
 		break;
 	}
 }

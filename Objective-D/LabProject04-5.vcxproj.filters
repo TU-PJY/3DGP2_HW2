@@ -268,6 +268,9 @@
     <ClInclude Include="Terrain.h">
       <Filter>[2]____________[ Game Object ]\[2][ Play Mode Object ]</Filter>
     </ClInclude>
+    <ClInclude Include="CameraController.h">
+      <Filter>[2]____________[ Game Object ]\[2][ Play Mode Object ]</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
