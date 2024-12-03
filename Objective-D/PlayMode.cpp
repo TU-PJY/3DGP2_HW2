@@ -1,7 +1,9 @@
 #include "PlayMode.h"
 #include "MouseUtil.h"
+#include "Terrain.h"
 
 void PlayMode::Start() {
+	scene.AddObject(new Terrain, "object_terrain", LAYER1);
 	RegisterController();
 	scene.RegisterModeName("PlayMode");
 }

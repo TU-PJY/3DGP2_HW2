@@ -7,7 +7,7 @@
 #include "LineShader.h"
 
 // 매쉬, 텍스처, 쉐이더 전역 뱐수를 여기에 extern 선언
-
+extern Mesh* MeshTerrain; // 터레인 매쉬
 /////////////////////////////////////////////////////////////////////////////////
 
 
@@ -15,6 +15,8 @@ extern Texture* TextureHelp; // 도움말 텍스처
 extern Texture* TextureArrow; // 화살표 텍스처
 extern Texture* TextureEnter; // PressEnter 텍스처
 extern Texture* TextureScroll; // Scroll help 텍스처
+
+extern Texture* TextureTerrain; // 터레인 텍스처
 /////////////////////////////////////////////////////////////////////////////////
 
 extern Object_Shader* ObjectShader;

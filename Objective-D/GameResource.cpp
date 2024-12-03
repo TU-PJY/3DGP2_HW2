@@ -5,10 +5,11 @@
 // Scene::Init()에서 실행된다.
 
 
-
+Mesh* MeshTerrain; // 터레인 매쉬
 
 // 매쉬를 여기서 로드한다.
 void LoadMesh(ID3D12Device* Device, ID3D12GraphicsCommandList* CmdList) {
+	ImportMesh(Device, CmdList, MeshTerrain, "Resources//Model//Terrain.bin", MESH_TYPE_BIN);
 }
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -18,12 +19,15 @@ Texture* TextureArrow; // 화살표 텍스처
 Texture* TextureEnter; // PressEnter 텍스처
 Texture* TextureScroll; // Scroll help 텍스처
 
+Texture* TextureTerrain; // 터레인 텍스처
+
 // 택스처를 여기서 로드한다.
 void LoadTexture(ID3D12Device* Device, ID3D12GraphicsCommandList* CmdList) {
 	ImportTexture(Device, CmdList, TextureHelp, L"Resources//Image//help.png", TEXTURE_TYPE_WIC);
 	ImportTexture(Device, CmdList, TextureArrow, L"Resources//Image//arrow.png", TEXTURE_TYPE_WIC);
 	ImportTexture(Device, CmdList, TextureEnter, L"Resources//Image//press_enter.png", TEXTURE_TYPE_WIC);
 	ImportTexture(Device, CmdList, TextureScroll, L"Resources//Image//scroll_help.png", TEXTURE_TYPE_WIC);
+	ImportTexture(Device, CmdList, TextureTerrain, L"Resources//Image//grass.jpg", TEXTURE_TYPE_WIC);
 }
 /////////////////////////////////////////////////////////////////////////////////
 
