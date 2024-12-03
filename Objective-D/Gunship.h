@@ -229,26 +229,23 @@ public:
 
 
 		// 이동 범위 제한, 맵 밖으로 나갈 수 없다.
-		if (Position.x > 95.0)
-			Position.x = 95.0;
-		else if (Position.x < -95.0)
-			Position.x = -95.0;
+		if (Position.x > 600.0)
+			Position.x = 600.0;
+		else if (Position.x < -600.0)
+			Position.x = -600.0;
 
-		if (Position.z > 95.0)
-			Position.z = 95.0;
-		else if (Position.z < -95.0)
-			Position.z = -95.0;
+		if (Position.z > 600.0)
+			Position.z = 600.0;
+		else if (Position.z < -600.0)
+			Position.z = -600.0;
 
 		terrainUtil.InputPosition(Position, 2.0);
 
 		// 높이 제한, 맵 밑으로 내려갈 수 없다.
-		// 연산 절약을 위해 맵 oobb와 충돌했을 때만 지형 높이를 얻도록 한다.
 		if (CheckCollisionState) {
 			if (auto terrain = scene.Find("object_terrain"); terrain) {
-				if (oobb.CheckCollision(terrain->GetOOBB())) {
-					if (terrainUtil.CheckCollision(terrain->GetTerrain()))
-						terrainUtil.SetHeightToTerrain(Position);
-				}
+				if (terrainUtil.CheckCollision(terrain->GetTerrain()))
+					terrainUtil.SetHeightToTerrain(Position);
 			}
 		}
 
@@ -256,8 +253,8 @@ public:
 		HeliRotation.x = std::lerp(HeliRotation.x, DestRotation.x, FT * 2);
 		HeliRotation.y = std::lerp(HeliRotation.y, DestRotation.y, FT * 2);
 
-		// 벡터 업데이트
-		Math::UpdateVector(Vec, HeliRotation.x, HeliRotation.y, HeliRotation.z);
+		// 회전 후 벡터 업데이트
+		Math::UpdateVector(Vec, HeliRotation);
 
 		// 충돌처리 가능 상태 활성화
 		CheckCollisionState = true;
@@ -266,7 +263,7 @@ public:
 	void Render() override {
 		// 헬기 몸통
 		InitRenderState(RENDER_TYPE_3D);
-		Transform::Scale(ScaleMatrix, 0.5, 0.5, 0.5);
+		Transform::Scale(ScaleMatrix, 0.8, 0.8, 0.8);
 		Transform::Move(TranslateMatrix, Position.x, Position.y, Position.z);
 		Transform::Rotate(TranslateMatrix, Tilt.x, HeliRotation.y, Tilt.z);
 		Transform::Rotate(TranslateMatrix, HeliRotation.x, 0.0, 0.0);
@@ -277,7 +274,7 @@ public:
 
 		// 헬기 날개
 		// 날개 파츠만의 별도의 변환을 진행한다.
-		Transform::Move(TranslateMatrix, 0.0, 2.0, 0.0);
+		Transform::Move(TranslateMatrix, 0.0, 3.0, 0.0);
 		Transform::Rotate(TranslateMatrix, 0.0, WingRotation, 0.0);
 		Render3D(MeshRotor, TextureGunship);
 

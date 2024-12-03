@@ -12,7 +12,7 @@ void Camera::Update(float FT) {
 		break;
 	case CamMode::TRACK_MODE:
 		if (auto helicopter = scene.Find("object_gunship"); helicopter)
-			TrackOffset(helicopter->GetPosition(), helicopter->GetVectorSet(), XMFLOAT3(5.0, 2.0, 0.0), FT);
+			TrackOffset(helicopter->GetPosition(), helicopter->GetVectorSet(), XMFLOAT3(5.0, 4.0, 0.0), FT);
 		break;
 	}
 }

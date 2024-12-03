@@ -5,14 +5,9 @@
 
 class Terrain : public GameObject {
 private:
-	OOBB oobb;
 	TerrainUtil terrainUtil;
 
 public:
-	OOBB GetOOBB() override {
-		return oobb;
-	}
-
 	TerrainUtil GetTerrain() override {
 		return terrainUtil;
 	}
@@ -22,9 +17,6 @@ public:
 		Transform::Move(TranslateMatrix, 0.0, -5.0, 0.0);
 		Transform::Scale(ScaleMatrix, 60.0, 120.0, 120.0);
 		terrainUtil.InputData(TranslateMatrix, RotateMatrix, ScaleMatrix, MeshTerrain);
-
-		// oobb 업데이트
-		oobb.Update(MeshTerrain, TranslateMatrix, RotateMatrix, ScaleMatrix);
 	}
 
 	void Render() override {
@@ -32,8 +24,5 @@ public:
 		// 행렬값 초기화 없이 그대로 유지한다.
 		InitRenderState(RENDER_TYPE_3D_STATIC);
 		Render3D(MeshTerrain, TextureTerrain);
-
-		// oobb 출력
-		oobb.Render();
 	}
 };

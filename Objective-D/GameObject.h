@@ -62,11 +62,12 @@ public:
 	virtual void Render() {}
 	virtual Mesh* GetObjectMesh() { return {}; }
 	virtual XMFLOAT3 GetPosition() { return {}; }
-	virtual OOBB GetAABB() { return {}; }
+	virtual AABB GetAABB() { return {}; }
 	virtual OOBB GetOOBB() { return {}; }
-	virtual OOBB GetRange() { return {}; }
+	virtual Range GetRange() { return {}; }
 	virtual Vector GetVectorSet() { return {}; }
 	virtual TerrainUtil GetTerrain() { return {}; }
 
 	// 사용자 정의 리턴 함수는 아래에 정의한다.
+	virtual AABB GetInsideAABB() { return{}; }
 };
