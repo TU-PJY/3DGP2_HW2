@@ -80,7 +80,7 @@ void Shader::CreateWireframePS(ID3D12Device* Device, ID3D12RootSignature* RootSi
 	PipelineStateDesc.PS = CreatePixelShader(&PixelShaderBlob);
 	PipelineStateDesc.RasterizerState = CreateBoundboxRasterizerState();
 	PipelineStateDesc.BlendState = CreateBlendState();
-	PipelineStateDesc.DepthStencilState = CreateDepthStencilState();
+	PipelineStateDesc.DepthStencilState = CreateBoundboxDepthStencilState();
 	PipelineStateDesc.InputLayout = CreateInputLayout();
 	PipelineStateDesc.SampleMask = UINT_MAX;
 	PipelineStateDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;

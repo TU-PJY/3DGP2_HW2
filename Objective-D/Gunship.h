@@ -29,9 +29,6 @@ private:
 	// 헬기 기울어짐
 	XMFLOAT3 Tilt{};
 
-	// oobb
-	OOBB oobb;
-
 	// 회피기동 여부
 	bool AvoidState{};
 
@@ -43,6 +40,9 @@ private:
 
 	// 회피 방향
 	int AvoidDir{};
+
+	// oobb
+	OOBB oobb;
 
 	// 터레인 객체와의 충돌처리를 위한 유틸 객체
 	TerrainUtil terrainUtil;
@@ -239,14 +239,16 @@ public:
 		else if (Position.z < -95.0)
 			Position.z = -95.0;
 
-		terrainUtil.InputPosition(Position, 5.0);
+		terrainUtil.InputPosition(Position, 2.0);
 
 		// 높이 제한, 맵 밑으로 내려갈 수 없다.
 		// 연산 절약을 위해 맵 oobb와 충돌했을 때만 지형 높이를 얻도록 한다.
 		if (CheckCollisionState) {
 			if (auto terrain = scene.Find("object_terrain"); terrain) {
-				if (oobb.CheckCollision(terrain->GetOOBB()))
-					terrainUtil.CheckCollision(terrain->GetTerrain());
+				if (oobb.CheckCollision(terrain->GetOOBB())) {
+					if (terrainUtil.CheckCollision(terrain->GetTerrain()))
+						terrainUtil.SetHeightToTerrain(Position);
+				}
 			}
 		}
 

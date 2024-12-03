@@ -21,6 +21,7 @@ public:
 	D3D12_RASTERIZER_DESC CreateBoundboxRasterizerState();
 	virtual D3D12_BLEND_DESC CreateBlendState();
 	virtual D3D12_DEPTH_STENCIL_DESC CreateDepthStencilState();
+	D3D12_DEPTH_STENCIL_DESC CreateBoundboxDepthStencilState();
 	D3D12_DEPTH_STENCIL_DESC CreateImageDepthStencilState();
 	virtual D3D12_SHADER_BYTECODE CreateVertexShader(ID3DBlob** ShaderBlob);
 	virtual D3D12_SHADER_BYTECODE CreatePixelShader(ID3DBlob** ShaderBlob);

@@ -8,9 +8,9 @@
 bool StartCapture;
 
 void PlayMode::Start() {
+	scene.AddObject(new CameraController, "object_controller", LAYER1);
 	scene.AddObject(new Terrain, "object_terrain", LAYER1);
 	scene.AddObject(new Water, "object_water", LAYER1);
-	scene.AddObject(new CameraController, "object_controller", LAYER1);
 	scene.AddObject(new Gunship, "object_gunship", LAYER2);
 	RegisterController();
 	scene.RegisterModeName("PlayMode");

@@ -14,14 +14,12 @@ cbuffer cbCameraInfo : register(b1)
 struct VS_INPUT
 {
     float3 position : POSITION;
-    float2 uv : TEXTURECOORD;
 };
 
 struct VS_OUTPUT
 {
     float4 positionH : SV_POSITION;
     float3 positionW : POSITION;
-    float2 uv : TEXTURECOORD;
 };
 
 VS_OUTPUT VSBoundboxColor(VS_INPUT input)

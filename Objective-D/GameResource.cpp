@@ -65,7 +65,6 @@ void LoadShader(ID3D12RootSignature* RootSignature, ID3D12Device* Device, ID3D12
 	// 바운드박스 쉐이더 생성
 	BoundboxShader = new Boundbox_Shader();
 	BoundboxShader->CreateWireframePS(Device, RootSignature);
-	BoundboxShader->CreateDefaultPS(Device, RootSignature);
 
 	// 라인 브러쉬 출력용 쉐이더 생성
 	LineShader = new Line_Shader();
