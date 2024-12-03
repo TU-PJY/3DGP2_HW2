@@ -6,10 +6,16 @@
 
 
 Mesh* MeshTerrain; // 터레인 매쉬
+Mesh* MeshGunship; // 헬리콥터 몸체 매쉬
+Mesh* MeshRotor; // 헬리콥터 날개 매쉬
+Mesh* MeshBuilding; // 건물 매쉬
 
 // 매쉬를 여기서 로드한다.
 void LoadMesh(ID3D12Device* Device, ID3D12GraphicsCommandList* CmdList) {
 	ImportMesh(Device, CmdList, MeshTerrain, "Resources//Model//Terrain.bin", MESH_TYPE_BIN);
+	ImportMesh(Device, CmdList, MeshGunship, "Resources//Model//Gunship.bin", MESH_TYPE_BIN);
+	ImportMesh(Device, CmdList, MeshRotor, "Resources//Model//Rotor.bin", MESH_TYPE_BIN);
+	ImportMesh(Device, CmdList, MeshBuilding, "Resources//Model//Building.bin", MESH_TYPE_BIN);
 }
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -21,6 +27,8 @@ Texture* TextureScroll; // Scroll help 텍스처
 
 Texture* TextureTerrain; // 터레인 텍스처
 Texture* TextureWater; // 물 텍스처
+Texture* TextureGunship; // 헬리콥터 텍스처
+Texture* TextureBuilding; // 건물 텍스처
 
 // 택스처를 여기서 로드한다.
 void LoadTexture(ID3D12Device* Device, ID3D12GraphicsCommandList* CmdList) {
@@ -30,6 +38,8 @@ void LoadTexture(ID3D12Device* Device, ID3D12GraphicsCommandList* CmdList) {
 	ImportTexture(Device, CmdList, TextureScroll, L"Resources//Image//scroll_help.png", TEXTURE_TYPE_WIC);
 	ImportTexture(Device, CmdList, TextureTerrain, L"Resources//Image//grass.jpg", TEXTURE_TYPE_WIC);
 	ImportTexture(Device, CmdList, TextureWater, L"Resources//Image//water.png", TEXTURE_TYPE_WIC);
+	ImportTexture(Device, CmdList, TextureGunship, L"Resources//Image//gunship.png", TEXTURE_TYPE_WIC);
+	ImportTexture(Device, CmdList, TextureBuilding, L"Resources//Image//color_building.png", TEXTURE_TYPE_WIC);
 }
 /////////////////////////////////////////////////////////////////////////////////
 

@@ -161,6 +161,7 @@
     <ClInclude Include="DDSTextureLoader12.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Gunship.h" />
     <ClInclude Include="Help.h" />
     <ClInclude Include="ImageShader.h" />
     <ClInclude Include="LineBrush.h" />

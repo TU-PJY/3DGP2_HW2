@@ -58,13 +58,15 @@ public:
 	}
 
 	void InputMouseMotion(HWND hWnd, POINT MotionPosition) override {
-		if (GetCapture() == hWnd) {
-			mouse.HideCursor();
-			GetCapture();
+		if (camera.CurrentMode() == CamMode::SPECTOR_MODE) {
+			if (GetCapture() == hWnd) {
+				mouse.HideCursor();
+				GetCapture();
 
-			XMFLOAT2 Delta = mouse.GetMotionDelta(MotionPosition, 0.1);
-			mouse.UpdateMotionPosition(MotionPosition);
-			UpdateMotionRotation(DestCamRotation, Delta.x, Delta.y);
+				XMFLOAT2 Delta = mouse.GetMotionDelta(MotionPosition, 0.1);
+				mouse.UpdateMotionPosition(MotionPosition);
+				UpdateMotionRotation(DestCamRotation, Delta.x, Delta.y);
+			}
 		}
 	}
 

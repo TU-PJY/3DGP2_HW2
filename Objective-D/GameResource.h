@@ -8,8 +8,10 @@
 
 // 매쉬, 텍스처, 쉐이더 전역 뱐수를 여기에 extern 선언
 extern Mesh* MeshTerrain; // 터레인 매쉬
+extern Mesh* MeshGunship; // 헬리콥터 몸체 매쉬
+extern Mesh* MeshRotor; // 헬리콥터 날개 매쉬
+extern Mesh* MeshBuilding; // 건물 매쉬
 /////////////////////////////////////////////////////////////////////////////////
-
 
 extern Texture* TextureHelp; // 도움말 텍스처
 extern Texture* TextureArrow; // 화살표 텍스처
@@ -18,6 +20,8 @@ extern Texture* TextureScroll; // Scroll help 텍스처
 
 extern Texture* TextureTerrain; // 터레인 텍스처
 extern Texture* TextureWater; // 물 텍스처
+extern Texture* TextureGunship; // 헬리콥터 텍스처
+extern Texture* TextureBuilding; // 건물 텍스처
 /////////////////////////////////////////////////////////////////////////////////
 
 extern Object_Shader* ObjectShader;

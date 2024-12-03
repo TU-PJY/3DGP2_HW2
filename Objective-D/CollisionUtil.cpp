@@ -42,7 +42,7 @@ void OOBB::Render() {
 	BoundboxShader->RenderWireframe(ObjectCmdList);
 
 	camera.SetToDefaultMode();
-	camera.GeneratePerspectiveMatrix(0.01f, 5000.0f, ASPECT, 45.0f);
+	camera.GeneratePerspectiveMatrix(0.1f, 5000.0f, ASPECT, 45.0f);
 	camera.SetViewMatrix();
 	camera.SetViewportsAndScissorRects();
 	camera.UpdateShaderVariables();
