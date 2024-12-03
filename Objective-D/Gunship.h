@@ -3,6 +3,7 @@
 #include "CameraUtil.h"
 #include "Scene.h"
 #include "MouseUtil.h"
+#include "PickingUtil.h"
 #include <cmath>
 
 // 헬리콥터 오브젝트
@@ -46,6 +47,9 @@ private:
 
 	// 터레인 객체와의 충돌처리를 위한 유틸 객체
 	TerrainUtil terrainUtil;
+
+	// 오브젝트 피킹을 위한 유틸
+	PickingUtil pickUtil;
 
 public:
 	XMFLOAT3 GetPosition() override { return Position; }

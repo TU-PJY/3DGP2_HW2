@@ -72,4 +72,5 @@ public:
 	virtual AABB GetInsideAABB() { return{}; }
 	virtual void EnableAlert() {}
 	virtual void DisableAlert() {}
+	virtual void SetPickingState() {}
 };
