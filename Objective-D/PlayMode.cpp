@@ -5,7 +5,9 @@
 #include "Gunship.h"
 #include "Building.h"
 #include "Skybox.h"
+#include "Tree.h"
 #include "CameraController.h"
+#include <random>
 
 bool StartCapture;
 
@@ -15,6 +17,18 @@ void PlayMode::Start() {
 	scene.AddObject(new Terrain, "object_terrain", LAYER1);
 	scene.AddObject(new Water, "object_water", LAYER1);
 	scene.AddObject(new Building, "object_building", LAYER1);
+
+	std::random_device rd{};
+	std::uniform_real_distribution<float> DistX(-150.0, 150.0);
+	std::uniform_real_distribution<float> DistY(-150.0, 150.0);
+
+	// 30개의 랜덤한 위치에 빌보드 추가
+	for (int i = 0; i < 30; ++i) {
+		float RandX, RandZ;
+		RandX = DistX(rd);
+		RandZ = DistY(rd);
+		scene.AddObject(new Tree(RandX, RandZ), "object_tree", LAYER1);
+	}
 
 	scene.AddObject(new Gunship, "object_gunship", LAYER2);
 	RegisterController();

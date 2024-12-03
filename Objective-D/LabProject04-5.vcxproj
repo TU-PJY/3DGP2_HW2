@@ -186,6 +186,7 @@
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="StartMode.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Tree.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="TerrainUtil.h" />
     <ClInclude Include="TextureUtil.h" />
