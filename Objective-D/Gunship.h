@@ -89,87 +89,36 @@ public:
 
 			XMFLOAT2 Delta = mouse.GetMotionDelta(MotionPosition, 0.1);
 			mouse.UpdateMotionPosition(MotionPosition);
-			UpdateMotionRotation(DestRotation, Delta.x, Delta.y);
+
+			if(!AvoidState)
+				UpdateMotionRotation(DestRotation, Delta.x, Delta.y);
 		}
 	}
-
-	//// 현재 시점을 기준으로 자신의 위치가 특정 지점으로 부터 오른쪽에 있는지 검사한다. 오른쪽이라면 true, 왼쪽이라면 false를 리턴한다.
-	//bool IsRightOfTarget(XMFLOAT3& targetPosition) {
-	//	XMFLOAT3 directionToTarget = XMFLOAT3(
-	//		targetPosition.x - Position.x,
-	//		targetPosition.y - Position.y,
-	//		targetPosition.z - Position.z
-	//	);
-
-	//	XMVECTOR rightVec = XMLoadFloat3(&Vec.Right);
-	//	XMVECTOR directionVec = XMLoadFloat3(&directionToTarget);
-	//	float dotProduct = XMVectorGetX(XMVector3Dot(rightVec, directionVec));
-
-	//	if (dotProduct < 0)
-	//		return true;
-
-	//	return false;
-	//}
-
-	//// 회전각도로 레이를 계산한다.
-	//XMVECTOR CalcRayDirection(XMFLOAT3& Rotation) {
-	//	float RotationX = XMConvertToRadians(Rotation.x);
-	//	float RotationY = XMConvertToRadians(Rotation.y);
-	//	float RotationZ = XMConvertToRadians(Rotation.z);
-
-	//	XMVECTOR rotationQuat = XMQuaternionRotationRollPitchYaw(RotationX, RotationY, RotationZ);
-	//	XMVECTOR defaultForward = XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
-	//	XMVECTOR rayDirection = XMVector3Rotate(defaultForward, rotationQuat);
-
-	//	return rayDirection;
-	//}
-
-	//// 레이가 시작되는 위치를 계산한다.
-	//XMVECTOR CalcRayOrigin(XMFLOAT3& Position) {
-	//	return XMVectorSet(Position.x, Position.y, Position.z, 1.0f);
-	//}
-
-	//// 레이가 aabb와 충돌하는지 검사한다
-	//bool CheckRayIntersectionWithBoundingBox(XMVECTOR& rayOrigin, XMVECTOR& rayDirection, AABB& other) {
-	//	float distance;
-	//	return other.aabb.Intersects(rayOrigin, rayDirection, distance);
-	//}
 
 	void Update(float FT) override {
 		// 건물의 외부 aabb와 헬리콥터의 oobb가 충돌하면 헬리콥터가 내부 aabb를 바라보는지 검사한다.
 		// 만약 바라본다면 회피기동을 실행한다.
 		// 건물 중점보다 오른쪽에 있으면 오른쪽으로, 왼쪽에 있으면 왼쪽으로 회피기동한다.
 		// 헬리콥터가 건물의 바운드박스를 벗어나기 전까지 회피기동 방향은 바뀌지 않는다.
-		//if (auto building = scene.Find("building"); building && CheckCollisionState) {
-		//	if (oobb.CheckCollision(building->GetAABB())) {
-		//		if (!AvoidCalculated &&
-		//			CheckRayIntersectionWithBoundingBox(CalcRayOrigin(Position), CalcRayDirection(HeliRotation), building->GetInsideAABB())) {
-		//			if (IsRightOfTarget(XMFLOAT3(0.0, 0.0, 0.0)))
-		//				AvoidDir = 1;
-		//			else
-		//				AvoidDir = -1;
+		if (auto building = scene.Find("object_building"); building && CheckCollisionState) {
+			if (oobb.CheckCollision(building->GetAABB())) {
+				if (!AvoidCalculated && Math::CheckRayCollision(Math::CalcRayOrigin(Position), Math::CalcRayDirection(HeliRotation), building->GetInsideAABB())) {
+					if(Math::IsRightOfTarget(Position, Vec, building->GetPosition()))
+						AvoidDir = 1;
+					else
+						AvoidDir = -1;
 
-		//			AvoidCalculated = true;
-		//			AvoidState = true;
-		//		}
-		//	}
+					AvoidCalculated = true;
+					AvoidState = true;
+				}
+			}
 
-		//	// 외부 aabb를 벗어나면 회피기동 상태가 해제된다.
-		//	else {
-		//		AvoidState = false;
-		//		AvoidCalculated = false;
-		//	}
-		//}
-
-		// 날개 회전
-		WingRotation += FT * 2000;
-
-		// 헬리콥터 회전 각도 제한
-		if (DestRotation.x < -50.0)
-			DestRotation.x = -50.0;
-
-		if (DestRotation.x > 50.0)
-			DestRotation.x = 50.0;
+			// 외부 aabb를 벗어나면 회피기동 상태가 해제된다.
+			else {
+				AvoidState = false;
+				AvoidCalculated = false;
+			}
+		}
 
 		// 방향에 해당하는 키를 누르면 속도를 음수 또는 양수로 증가
 		// 이동 방향으로 몸체를 기울인다.
@@ -190,12 +139,11 @@ public:
 				StrafeSpeed = std::lerp(StrafeSpeed, -15.0, FT);
 				Tilt.z = std::lerp(Tilt.z, 15.0, FT);
 			}
-			if (MoveUp) {
+			if (MoveUp) 
 				Position.y += 10 * FT;
-			}
-			if (MoveDown) {
+
+			if (MoveDown) 
 				Position.y -= 10 * FT;
-			}
 
 			// 두 키를 동시에 누르거나 둘 다 누르지 않으면 속도를 감소시킨다.
 			if ((!MoveForward && !MoveBackward) || (MoveForward && MoveBackward)) {
@@ -209,24 +157,19 @@ public:
 			}
 		}
 
-		//// 회피기동 시 좀 더 빠르게 가속한다.
-		//if (AvoidState) {
-		//	StrafeSpeed = std::lerp(StrafeSpeed, 15.0 * AvoidDir, FT * 2.0);
-		//	ForwardSpeed = std::lerp(ForwardSpeed, 15.0, FT * 2.0);
-		//	Tilt.z = std::lerp(Tilt.z, -15.0 * AvoidDir, FT * 2.0);
-		//	Tilt.x = std::lerp(Tilt.x, 15.0, FT * 2.0);
-
-		//	// 크로스헤어를 빨간색으로 변경한다.
-		//	if (auto crosshair = scene.Find("crosshair"); crosshair)
-		//		crosshair->SetUnable();
-		//}
+		// 회피기동 시 좀 더 빠르게 가속한다.
+		if (AvoidState) {
+			StrafeSpeed = std::lerp(StrafeSpeed, 15.0 * AvoidDir, FT * 2.0);
+			ForwardSpeed = std::lerp(ForwardSpeed, 15.0, FT * 2.0);
+			Tilt.z = std::lerp(Tilt.z, -15.0 * AvoidDir, FT * 2.0);
+			Tilt.x = std::lerp(Tilt.x, 15.0, FT * 2.0);
+		}
 
 		// 이동
 		Position.x += sin(XMConvertToRadians(HeliRotation.y)) * ForwardSpeed * FT;
 		Position.z += cos(XMConvertToRadians(HeliRotation.y)) * ForwardSpeed * FT;
 		Position.x += cos(XMConvertToRadians(HeliRotation.y)) * StrafeSpeed * FT;
 		Position.z -= sin(XMConvertToRadians(HeliRotation.y)) * StrafeSpeed * FT;
-
 
 		// 이동 범위 제한, 맵 밖으로 나갈 수 없다.
 		if (Position.x > 600.0)
@@ -239,6 +182,7 @@ public:
 		else if (Position.z < -600.0)
 			Position.z = -600.0;
 
+		// 터레인 유틸에 현재 위치 입력
 		terrainUtil.InputPosition(Position, 2.0);
 
 		// 높이 제한, 맵 밑으로 내려갈 수 없다.
@@ -248,6 +192,16 @@ public:
 					terrainUtil.SetHeightToTerrain(Position);
 			}
 		}
+
+		// 날개 회전
+		WingRotation += FT * 2000;
+
+		// 헬리콥터 회전 각도 제한
+		if (DestRotation.x < -50.0)
+			DestRotation.x = -50.0;
+
+		if (DestRotation.x > 50.0)
+			DestRotation.x = 50.0;
 
 		// 헬리콥터 부드러운 회전
 		HeliRotation.x = std::lerp(HeliRotation.x, DestRotation.x, FT * 2);
