@@ -31,6 +31,7 @@ Texture* TextureGunship; // 헬리콥터 텍스처
 Texture* TextureBuilding; // 건물 텍스처
 Texture* TextureTree; // 나무 텍스처
 Texture* TextureSkybox; // 스카이박스 텍스처
+Texture* TextureAlert; // 회피 기동 알림 텍스처
 
 // 택스처를 여기서 로드한다.
 void LoadTexture(ID3D12Device* Device, ID3D12GraphicsCommandList* CmdList) {
@@ -44,6 +45,7 @@ void LoadTexture(ID3D12Device* Device, ID3D12GraphicsCommandList* CmdList) {
 	ImportTexture(Device, CmdList, TextureBuilding, L"Resources//Image//color_building.png", TEXTURE_TYPE_WIC);
 	ImportTexture(Device, CmdList, TextureTree, L"Resources//Image//tree.png", TEXTURE_TYPE_WIC);
 	ImportTexture(Device, CmdList, TextureSkybox, L"Resources//Image//sky.png", TEXTURE_TYPE_WIC);
+	ImportTexture(Device, CmdList, TextureAlert, L"Resources//Image//avoid.png", TEXTURE_TYPE_WIC);
 }
 /////////////////////////////////////////////////////////////////////////////////
 

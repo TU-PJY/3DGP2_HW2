@@ -21,9 +21,10 @@ extern Texture* TextureScroll; // Scroll help 텍스처
 extern Texture* TextureTerrain; // 터레인 텍스처
 extern Texture* TextureWater; // 물 텍스처
 extern Texture* TextureGunship; // 헬리콥터 텍스처
-extern Texture* TextureBuilding; // 건물 텍스처ㄴ
+extern Texture* TextureBuilding; // 건물 텍스처
 extern Texture* TextureTree; // 나무 텍스처
 extern Texture* TextureSkybox; // 스카이박스 텍스처
+extern Texture* TextureAlert; // 회피 기동 알림 텍스처
 /////////////////////////////////////////////////////////////////////////////////
 
 extern Object_Shader* ObjectShader;

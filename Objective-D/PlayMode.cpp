@@ -7,6 +7,7 @@
 #include "Skybox.h"
 #include "Tree.h"
 #include "CameraController.h"
+#include "AvoidAlert.h"
 #include <random>
 
 bool StartCapture;
@@ -31,6 +32,10 @@ void PlayMode::Start() {
 	}
 
 	scene.AddObject(new Gunship, "object_gunship", LAYER2);
+
+	// UI는 최상단 레이어에 추가된다.
+	scene.AddObject(new AvoidAlert, "object_alert", LAYER3);
+
 	RegisterController();
 	scene.RegisterModeName("PlayMode");
 }

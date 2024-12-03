@@ -110,6 +110,9 @@ public:
 
 					AvoidCalculated = true;
 					AvoidState = true;
+
+					if (auto Alert = scene.Find("object_alert"); Alert)
+						Alert->EnableAlert();
 				}
 			}
 
@@ -117,6 +120,8 @@ public:
 			else {
 				AvoidState = false;
 				AvoidCalculated = false;
+				if (auto Alert = scene.Find("object_alert"); Alert)
+					Alert->DisableAlert();
 			}
 		}
 

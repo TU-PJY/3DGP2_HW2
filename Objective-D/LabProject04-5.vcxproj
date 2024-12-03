@@ -149,6 +149,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AvoidAlert.h" />
     <ClInclude Include="BoundboxShader.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="CameraController.h" />

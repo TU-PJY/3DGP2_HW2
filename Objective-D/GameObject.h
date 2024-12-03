@@ -70,4 +70,6 @@ public:
 
 	// 사용자 정의 리턴 함수는 아래에 정의한다.
 	virtual AABB GetInsideAABB() { return{}; }
+	virtual void EnableAlert() {}
+	virtual void DisableAlert() {}
 };
